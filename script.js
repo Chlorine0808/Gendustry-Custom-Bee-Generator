@@ -121,7 +121,7 @@ const bees = [
         name: "lifespan",
         displayedName: "Life span",
         type: "dropdown",
-        options: ["", "forestry.lifespanShortest", "forestry.lifespanShorter", "forestry.lifespanShortened", "forestry.lifespanShort", "forestry.lifespanNormal", "forestry.lifespanLongest", "forestry.lifespanLonger", "forestry.lifespanLong", "forestry.lifespanElongated", "avaritia.lifespanArtificial"]
+        options: ["", "forestry.lifespanShortest", "forestry.lifespanShorter", "forestry.lifespanShort", "forestry.lifespanShortened", "forestry.lifespanNormal", "forestry.lifespanElongated", "forestry.lifespanLong", "forestry.lifespanLonger", "forestry.lifespanLongest", "avaritia.lifespanArtificial"]
     },
     {
         name: "fertility",
