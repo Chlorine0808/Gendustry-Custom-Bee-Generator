@@ -96,7 +96,7 @@ const bees = [
         name: "products",
         displayedName: "Normal Products",
         type: "textarea",
-        description: "One per line. Example: 10% S:minecraft:diamond"
+        description: "One per line. Example: 10% S:minecraft:wool@4"
     },
     {
         name: "specialty",
