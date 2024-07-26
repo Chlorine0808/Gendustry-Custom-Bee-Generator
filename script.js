@@ -171,7 +171,7 @@ const bees = [
         name: "flowering",
         displayedName: "Flowering Speed",
         type: "dropdown",
-        options: ["", "forestry.floweringSlowest", "forestry.floweringSlower", "forestry.floweringSlow", "forestry.floweringAverage", "forestry.floweringFast", "forestry.floweringFaster", "forestry.floweringFastest", "forestry.floweringMaximum", "extratrees.species.floweringcrabapple"]
+        options: ["", "forestry.floweringSlowest", "forestry.floweringSlower", "forestry.floweringSlow", "forestry.floweringAverage", "forestry.floweringFast", "forestry.floweringFaster", "forestry.floweringFastest", "forestry.floweringMaximum"]
     },
     {
         name: "territory",
