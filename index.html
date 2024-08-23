@@ -3,15 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gendustry Custom Bee Generator</title>
     <style>
-        .config-item {
-            margin-bottom: 15px;
-        }
-
-        .config-item label {
-            margin-right: 10px;
+        label,
+        input,
+        textarea,
+        select,
+        span,
+        button {
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -21,10 +21,30 @@
     <h3>Setup</h3>
     <p>Make "{name}.cfg" and "{name}.{language}.lang" in minecraft/config/gendustry</p>
     <p>Launch minecraft and do "\dump alleles" to generate "Alleles.dump"</p>
-    <a href="https://bdew.net/gendustry/configuration/">Gendustry Reference site</a>
+    <a href="https://bdew.net/gendustry/configuration/">Gendustry Reference</a>
     <p>Author: Chlorine</p>
     <p>Discord: chlorine0808</p>
-    <div id="config-container"></div>
+
+    <h2>Custom Branch Form</h2>
+    <form id="branchForm"></form>
+    <textarea id="branchConfig" rows="20" cols="80"></textarea>
+
+    <h2>Custom Bee Form</h2>
+    <form id="beeForm"></form>
+    <textarea id="beeConfig" rows="20" cols="80"></textarea>
+
+    <h2>Custom Mutation Form</h2>
+    <form id="mutationForm"></form>
+    <textarea id="mutationConfig" rows="20" cols="80"></textarea>
+
+    <h2>Custom HoneyComb Form</h2>
+    <form id="honeycombForm"></form>
+    <textarea id="honeycombConfig" rows="20" cols="80"></textarea>
+
+    <h2>Custom HoneyDrop Form</h2>
+    <form id="honeydropForm"></form>
+    <textarea id="honeydropConfig" rows="20" cols="80"></textarea>
+
     <script src="script.js"></script>
 </body>
 

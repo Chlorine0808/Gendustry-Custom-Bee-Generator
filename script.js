@@ -1,395 +1,432 @@
-const branches = [{
-    name: "branch_name",
-    displayedName: "Branch Name",
-    type: "text"
-},
-{
-    name: "branch_id",
-    displayedName: "Branch Unique ID",
-    type: "text"
-},
-{
-    name: "branch_parent",
-    displayedName: "Parent",
-    type: "text",
-    defaultValue: "apidae",
-    description: "For bees should be \"apidae\""
-},
-{
-    name: "scientific",
-    displayedName: "Scientific",
-    type: "text"
-}
-];
+const branch = {
+    branch_name: {
+        name: "branch_name",
+        displayedName: "Branch Name",
+        type: "text",
+        placeholder: "lunch"
+    },
+    branch_id: {
+        name: "branch_id",
+        displayedName: "Branch Unique ID",
+        type: "text",
+        placeholder: "gendustry.lunch"
+    },
+    branch_parent: {
+        name: "branch_parent",
+        displayedName: "Parent",
+        type: "text",
+        default: "apidae",
+        placeholder: "apidae",
+        description: "For bees should be \"apidae\""
+    },
+    scientific: {
+        name: "scientific",
+        displayedName: "Scientific",
+        type: "text",
+        placeholder: "luncheon"
+    }
+};
 
-const bees = [
-    {
+const bee = {
+    bee_name: {
         name: "bee_name",
         displayedName: "Bee Name",
-        type: "text"
+        type: "text",
+        default: "babee",
+        placeholder: "babee"
     },
-    {
+    dominant: {
         name: "dominant",
-        displayedName: "Dominant Gene",
-        type: "dropdown",
-        options: ["false", "true"]
+        configName: "Dominant",
+        displayedName: "Dominant Gene ?",
+        type: "checkbox"
     },
-    {
+    glowing: {
         name: "glowing",
-        displayedName: "Glowing Texture",
-        type: "dropdown",
-        options: ["false", "true"]
+        configName: "Glowing",
+        displayedName: "Glowing Texture ?",
+        type: "checkbox",
+        description: "Has glowing texture"
     },
-    {
+    bee_primarycolor: {
         name: "bee_primarycolor",
+        configName: "PrimaryColor",
         displayedName: "Primary Color",
         type: "color"
     },
-    {
+    bee_secondarycolor: {
         name: "bee_secondarycolor",
+        configName: "SecondaryColor",
         displayedName: "Secondary Color",
         type: "color"
     },
-    {
+    secret: {
         name: "secret",
+        configName: "Secret",
         displayedName: "Secret",
-        type: "dropdown",
-        options: ["false", "true"],
+        type: "checkbox",
         description: "Don't show up in NEI or creative"
     },
-    {
+    humidity: {
         name: "humidity",
+        configName: "Humidity",
         displayedName: "Humidity",
         type: "dropdown",
         options: ["Arid", "Normal", "Damp"]
     },
-    {
+    temperature: {
         name: "temperature",
+        configName: "Temperature",
         displayedName: "Temperature",
         type: "dropdown",
         options: ["Icy", "Cold", "Normal", "Warm", "Hot", "Hellish"]
     },
-    {
+    nocturnal: {
         name: "nocturnal",
+        configName: "Nocturnal",
         displayedName: "Nocturnal",
-        type: "dropdown",
-        options: ["false", "true"],
+        type: "checkbox",
         description: "Only work at night"
     },
-    {
+    binominal: {
         name: "binominal",
+        configName: "Binominal",
         displayedName: "Binominal",
         type: "text",
+        placeholder: "Babee",
         description: "Species name in portable analyzer"
     },
-    {
+    authority: {
         name: "authority",
+        configName: "Authority",
         displayedName: "Authority",
         type: "text",
+        placeholder: "Chlorine"
     },
-    {
+    bee_branch: {
         name: "bee_branch",
+        configName: "Branch",
         displayedName: "Branch",
-        type: "text"
+        type: "text",
+        placeholder: "gendustry.lunch"
     },
-    {
+    products: {
         name: "products",
+        configName: "Products",
         displayedName: "Normal Products",
-        type: "textarea",
-        description: "One per line. Example: 10% S:minecraft:wool@4"
+        type: "droplist",
     },
-    {
+    specialty: {
         name: "specialty",
+        configName: "Specialty",
         displayedName: "Special Products",
-        type: "textarea",
-        description: "One per line. Example: 10% S:gendustry:\"HoneyComb.test\""
+        type: "droplist",
     },
-    {
+    base: {
         name: "base",
+        configName: "Base",
         displayedName: "Base specie",
         type: "text",
-        defaultValue: "forestry.speciesForest",
+        default: "forestry.speciesForest",
+        placeholder: "forestry.speciesForest",
         description: "Copy from alleles.dump"
     },
-    {
+    bee_speed: {
         name: "bee_speed",
+        configName: "Speed",
         displayedName: "Production speed",
         type: "dropdown",
         options: ["", "forestry.speedSlowest", "forestry.speedSlower", "forestry.speedSlow", "forestry.speedNormal", "forestry.speedFast", "forestry.speedFaster", "forestry.speedFastest", "magicbees.speedBlinding", "avaritia.speedNerfed"]
     },
-    {
+    lifespan: {
         name: "lifespan",
+        configName: "Lifespan",
         displayedName: "Life span",
         type: "dropdown",
         options: ["", "forestry.lifespanShortest", "forestry.lifespanShorter", "forestry.lifespanShort", "forestry.lifespanShortened", "forestry.lifespanNormal", "forestry.lifespanElongated", "forestry.lifespanLong", "forestry.lifespanLonger", "forestry.lifespanLongest", "avaritia.lifespanArtificial"]
     },
-    {
+    fertility: {
         name: "fertility",
+        configName: "Fertility",
         displayedName: "Fertility",
         type: "dropdown",
         options: ["", "forestry.fertilityLow", "forestry.fertilityNormal", "forestry.fertilityHigh", "forestry.fertilityMaximum"]
     },
-    {
+    temperature_tolerance: {
         name: "temperature_tolerance",
+        configName: "Temperature_Tolerance",
         displayedName: "Temperature Tolerance",
         type: "dropdown",
         options: ["", "forestry.toleranceNone", "forestry.toleranceBoth1", "forestry.toleranceBoth2", "forestry.toleranceBoth3", "forestry.toleranceBoth4", "forestry.toleranceBoth5", "forestry.toleranceDown1", "forestry.toleranceDown2", "forestry.toleranceDown3", "forestry.toleranceDown4", "forestry.toleranceDown5", "forestry.toleranceUp1", "forestry.toleranceUp2", "forestry.toleranceUp3", "forestry.toleranceUp4", "forestry.toleranceUp5"]
     },
-    {
+    A_nocturnal: {
         name: "A_nocturnal",
+        configName: "Nocturnal",
         displayedName: "Nocturnal",
         type: "dropdown",
         options: ["", "forestry.boolFalse", "forestry.boolTrue"],
         description: "Only works at night"
     },
-    {
+    humidity_tolerance: {
         name: "humidity_tolerance",
+        configName: "Humidity_Tolerance",
         displayedName: "Humidity Tolerance",
         type: "dropdown",
         options: ["", "forestry.toleranceNone", "forestry.toleranceBoth1", "forestry.toleranceBoth2", "forestry.toleranceBoth3", "forestry.toleranceBoth4", "forestry.toleranceBoth5", "forestry.toleranceDown1", "forestry.toleranceDown2", "forestry.toleranceDown3", "forestry.toleranceDown4", "forestry.toleranceDown5", "forestry.toleranceUp1", "forestry.toleranceUp2", "forestry.toleranceUp3", "forestry.toleranceUp4", "forestry.toleranceUp5"]
     },
-    {
-        name: "tolerantFlyer",
+    tolerantFlyer: {
+        name: "tolerant_flyer",
+        configName: "Tolerant_Flyer",
         displayedName: "Rain Tolerance",
         type: "dropdown",
         options: ["", "forestry.boolFalse", "forestry.boolTrue"]
     },
-    {
-        name: "caveDwelling",
+    caveDwelling: {
+        name: "cave_dwelling",
+        configName: "Cave_Dwelling",
         displayedName: "Cave Dwelling",
         type: "dropdown",
         options: ["", "forestry.boolFalse", "forestry.boolTrue"],
         description: "Can work without seeing the sky"
     },
-    {
+    flower_provider: {
         name: "flower_provider",
+        configName: "Flower_Provider",
         displayedName: "Flower Type",
         type: "text",
         description: "Copy from alleles.dump"
     },
-    {
+    flowering: {
         name: "flowering",
+        configName: "Flowering",
         displayedName: "Flowering Speed",
         type: "dropdown",
         options: ["", "forestry.floweringSlowest", "forestry.floweringSlower", "forestry.floweringSlow", "forestry.floweringAverage", "forestry.floweringFast", "forestry.floweringFaster", "forestry.floweringFastest", "forestry.floweringMaximum"]
     },
-    {
+    territory: {
         name: "territory",
+        configName: "Territory",
         displayedName: "Bee active area",
         type: "dropdown",
         options: ["", "forestry.territoryAverage", "forestry.territoryLarge", "forestry.territoryLarger", "forestry.territoryLargest"]
     },
-    {
+    bee_effect: {
         name: "bee_effect",
+        configName: "Effect",
         displayedName: "Bee Effect",
         type: "text",
+        placeholder: "forestry.effectNone",
         description: "Copy from alleles.dump"
     }
-];
+};
 
-const mutations = [{
-    name: "parent1",
-    displayedName: "Parent 1",
-    type: "text",
-    description: "Copy from alleles.dump"
-},
-{
-    name: "parent2",
-    displayedName: "Parent 2",
-    type: "text",
-    description: "Copy from alleles.dump"
-},
-{
-    name: "mutation_result",
-    displayedName: "Mutation result",
-    type: "text"
-},
-{
-    name: "mutation_chance",
-    displayedName: "Mutation chance",
-    type: "number",
-    min: "0",
-    max: "100"
-},
-{
-    name: "mutation_conditions",
-    displayedName: "Mutation requirements",
-    type: "dropdown",
-    options: ["None", "Temperature", "Humidity", "Biome", "Block"],
-    defaultValue: "Temperature"
-},
-];
+const mutation = {
+    parent1: {
+        name: "parent1",
+        displayedName: "Parent 1",
+        type: "text",
+        description: "Copy from alleles.dump"
+    },
+    parent2: {
+        name: "parent2",
+        displayedName: "Parent 2",
+        type: "text",
+        description: "Copy from alleles.dump"
+    },
+    mutation_result: {
+        name: "mutation_result",
+        displayedName: "Mutation result",
+        type: "text"
+    },
+    mutation_chance: {
+        name: "mutation_chance",
+        displayedName: "Mutation chance",
+        type: "number",
+        min: "0",
+        max: "100"
+    },
+    mutation_conditions: {
+        name: "mutation_conditions",
+        displayedName: "Mutation requirements",
+        type: "dropdown",
+        options: ["None", "Temperature", "Humidity", "Biome", "Block"],
+        default: "Temperature"
+    }
+};
 
-const honeycombs = [{
-    name: "honeycomb_name",
-    displayedName: "Honeycomb Name",
-    type: "text",
-    description: "Example: golden"
-},
-{
-    name: "honeycomb_damagevalue",
-    displayedName: "Honeycomb Unique ID",
-    type: "number"
-},
-{
-    name: "honeycomb_primarycolor",
-    displayedName: "Primary Color",
-    type: "color"
-},
-{
-    name: "honeycomb_secondarycolor",
-    displayedName: "Secondary Color",
-    type: "color"
+const honeycomb = {
+    honeycomb_name: {
+        name: "honeycomb_name",
+        displayedName: "Honeycomb Name",
+        type: "text",
+        description: "Example: golden"
+    },
+    honeycomb_damagevalue: {
+        name: "honeycomb_damagevalue",
+        displayedName: "Honeycomb Unique ID",
+        type: "number"
+    },
+    honeycomb_primarycolor: {
+        name: "honeycomb_primarycolor",
+        displayedName: "Primary Color",
+        type: "color"
+    },
+    honeycomb_secondarycolor: {
+        name: "honeycomb_secondarycolor",
+        displayedName: "Secondary Color",
+        type: "color"
+    }
+};
+
+const honeydrop = {
+    honeydrop_name: {
+        name: "honeydrop_name",
+        displayedName: "Honeydrop Name",
+        type: "text"
+    },
+    honeydrop_damagevalue: {
+        name: "honeydrop_damagevalue",
+        displayedName: "Honeydrop Unique ID",
+        type: "number"
+    },
+    honeydrop_primarycolor: {
+        name: "honeydrop_primarycolor",
+        displayedName: "Primary Color",
+        type: "color"
+    },
+    honeydrop_secondarycolor: {
+        name: "honeydrop_secondarycolor",
+        displayedName: "Secondary Color",
+        type: "color"
+    }
+};
+
+
+
+document.addEventListener("DOMContentLoaded", generateForm);
+
+function generateForm() {
+    const branchForm = document.getElementById('branchForm');
+    createForm(branch, branchForm, 'branchText', 'generateBranchConfig');
+    const beeForm = document.getElementById('beeForm');
+    createForm(bee, beeForm, 'beeText', 'generateBeeConfig');
+    const mutationForm = document.getElementById('mutationForm');
+    createForm(mutation, mutationForm, 'mutationText', 'generateMutationConfig');
+    const honeycombForm = document.getElementById('honeycombForm');
+    createForm(honeycomb, honeycombForm, 'honeycombText', 'generateHoneycombConfig');
+    const honeydropForm = document.getElementById('honeydropForm');
+    createForm(honeydrop, honeydropForm, 'honeydropText', 'generateHoneydropConfig');
 }
-];
 
-const honeydrops = [{
-    name: "honeydrop_name",
-    displayedName: "Honeydrop Name",
-    type: "text"
-},
-{
-    name: "honeydrop_damagevalue",
-    displayedName: "Honeydrop Unique ID",
-    type: "number"
-},
-{
-    name: "honeydrop_primarycolor",
-    displayedName: "Primary Color",
-    type: "color"
-},
-{
-    name: "honeydrop_secondarycolor",
-    displayedName: "Secondary Color",
-    type: "color"
+function createForm(config, form, outputId, configGenerator) {
+    for (const key in config) {
+        const cfg = config[key];
+        createFormElement(cfg, form);
+    }
+
+    const button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.textContent = 'Generate Config';
+    button.setAttribute('onclick', `${configGenerator}('${outputId}')`);
+    form.appendChild(button);
 }
-];
 
-// const flowerallele = [{
-//     name: "flowerallele_id",
-//     type: "text"
-// },
-// {
-//     name: "flowerallele_flowers",
-//     type: "text",
-//     description: "Copy from alleles.dump"
-//     // type: "dropdown",
-//     // options: ["flowers", "cacti", "wheat", "carrots", "potatoes", "nether_wart", "mushrooms"]
-// }
-// ];
+function createFormElement(cfg, form) {
+    const label = document.createElement('label');
+    label.setAttribute('for', cfg.name);
+    label.textContent = cfg.displayedName + ": ";
+    form.appendChild(label);
 
-// const recipes = [{
-//     name: "input",
-//     type: "text"
-// },
-// {
-//     name: "output",
-//     type: "text"
-// },
-// {
-//     name: "time",
-//     type: "slider",
-//     min: 0,
-//     max: 100,
-//     step: 1
-// }
-// ];
+    let input = createInput(cfg);
+    input.setAttribute('id', cfg.name);
+    input.setAttribute('name', cfg.name);
+    if (cfg.required !== false) input.required = true;
+    form.appendChild(input);
 
-// const hivegen = [{
-//     name: "hivegen_id",
-//     type: "text"
-// },
-// {
-//     name: "hivegen_world",
-//     type: "text"
-// },
-// {
-//     name: "hivegen_biome",
-//     type: "text"
-// },
-// {
-//     name: "hivegen_chance",
-//     type: "slider",
-//     min: 0,
-//     max: 1,
-//     step: 0.05
-// }
-// ];
+    if (cfg.name === 'mutation_conditions') {
+        input.addEventListener('change', function () {
+            updateMutationConditionsInput(this.value);
+        });
+        const conditionsInput = document.createElement('div');
+        conditionsInput.id = 'mutation_conditions_input';
+        form.appendChild(conditionsInput);
+    }
 
+    if (cfg.description) {
+        const description = document.createElement('span');
+        description.textContent = " " + cfg.description;
+        form.appendChild(description);
+    }
 
-document.addEventListener("DOMContentLoaded", () => {
-    createConfigForm();
-    // updateMutationConditionsInput("None");
-});
+    const br = document.createElement('br');
+    form.appendChild(br);
+}
 
-function createInputElement(param) {
+function createInput(param) {
+    let input;
     switch (param.type) {
         case "dropdown":
-            return createDropdown(param.name, param.options);
-        case "slider":
-            return createSlider(param.name, param.min, param.max, param.step);
-        case "color":
-            return createColorPicker(param.name);
-        case "text":
-            return createTextInput(param);
+            input = document.createElement("select");
+            input.id = param.name;
+
+            param.options.forEach(option => {
+                const optionElement = document.createElement("option");
+                optionElement.value = option;
+                optionElement.text = option;
+                input.appendChild(optionElement);
+            });
+            break;
         case "textarea":
-            return createTextArea(param);
-        case "number":
-            return createNumberInput(param);
+            input = document.createElement("textarea");
+            input.id = param.name;
+            break;
+        case "droplist":
+            input = createSpecialInput(param.name, "droplist");
+            break;
         default:
-            return null;
+            input = document.createElement("input");
+            input.type = param.type;
+            input.id = param.name;
+            if (param.default !== undefined) input.value = param.default;
+            if (param.min !== undefined) input.min = param.min;
+            if (param.max !== undefined) input.max = param.max;
+            if (param.placeholder !== undefined) input.placeholder = param.placeholder;
+            break;
     }
+    return input;
 }
-
-function createDropdown(name, options, defaultValue) {
-    const dropdown = document.createElement("select");
-    dropdown.id = name;
-
-    options.forEach(option => {
-        const optionElement = document.createElement("option");
-        optionElement.value = option;
-        optionElement.text = option;
-        dropdown.appendChild(optionElement);
-    });
-
-    if (name === "mutation_conditions") {
-        dropdown.addEventListener("change", (event) => {
-            updateMutationConditionsInput(event.target.value);
-        });
-    }
-
-    return dropdown;
-}
-
 
 function updateMutationConditionsInput(selectedOption) {
-    const inputContainer = document.getElementById("mutation_conditions_input_container");
+    const inputContainer = document.getElementById("mutation_conditions_input");
     inputContainer.innerHTML = "";
 
     if (selectedOption === "None") {
-        return; // 条件なしの場合は入力フィールドを表示しない
+        return;
     }
 
+    addMutationConditionsInput(inputContainer, selectedOption);
+}
+
+function addMutationConditionsInput(container, selectedOption) {
     const beforeText = document.createElement("span");
     beforeText.textContent = "Condition: ";
-    inputContainer.appendChild(beforeText);
+    container.appendChild(beforeText);
 
     if (selectedOption === "Biome" || selectedOption === "Block") {
         const inputElement = document.createElement("input");
         inputElement.type = "text";
         inputElement.id = `mutation_conditions_${selectedOption}`;
-        inputContainer.appendChild(inputElement);
+        container.appendChild(inputElement);
 
         if (selectedOption === "Block") {
             const afterText = document.createElement("span");
             afterText.textContent = " Example : B:wool@1, OD:blockGold";
-            inputContainer.appendChild(afterText);
+            container.appendChild(afterText);
         }
     } else {
         const dropdownElement = document.createElement("select");
         dropdownElement.id = `mutation_conditions_${selectedOption}`;
 
-        // Example options for the new dropdown based on selectedOption
         let newOptions;
         switch (selectedOption) {
             case "Temperature":
@@ -407,169 +444,64 @@ function updateMutationConditionsInput(selectedOption) {
             dropdownElement.appendChild(optionElement);
         });
 
-        inputContainer.appendChild(dropdownElement);
+        container.appendChild(dropdownElement);
     }
 }
 
-function createSlider(name, min, max, step) {
-    const slider = document.createElement("input");
-    slider.type = "range";
-    slider.id = name;
-    slider.min = min;
-    slider.max = max;
-    slider.step = step;
-    slider.value = min;
+function createSpecialInput(name, type) {
+    const container = document.createElement('div');
+    container.setAttribute('id', name);
 
-    const valueDisplay = document.createElement("span");
-    valueDisplay.id = `${name}-value`;
-    valueDisplay.textContent = min;
-
-    slider.oninput = () => {
-        valueDisplay.textContent = slider.value;
-    };
-
-    const container = document.createElement("div");
-    container.appendChild(slider);
-    container.appendChild(valueDisplay);
+    const addButton = document.createElement('button');
+    addButton.setAttribute('type', 'button');
+    addButton.textContent = 'Add Drops';
+    addButton.onclick = () => addSpecialInput(container, type);
+    container.appendChild(addButton);
 
     return container;
 }
 
-function createColorPicker(name) {
-    const colorPicker = document.createElement("input");
-    colorPicker.type = "color";
-    colorPicker.id = name;
-    return colorPicker;
-}
+function addSpecialInput(container, type) {
+    const newContainer = document.createElement('div');
+    var formElements = [];
 
-function createTextInput(param) {
-    const textInput = document.createElement("input");
-    textInput.type = "text";
-    textInput.id = param.name;
-    // textInput.value = typeof defaultValue !== 'undefined' && defaultValue !== null ? defaultValue : "";
-    textInput.value = param.defaultValue || "";
-    return textInput;
-}
-
-function createTextArea(param) {
-    const textArea = document.createElement("textarea");
-    textArea.id = param.name;
-    textArea.value = param.defaultValue || "";
-    return textArea;
-}
-
-function createNumberInput(param) {
-    const textInput = document.createElement("input");
-    textInput.type = "number";
-    textInput.id = param.name;
-    param.min = param.min !== undefined ? param.min : textInput.min;
-    param.max = param.max !== undefined ? param.max : textInput.max;
-    return textInput;
-}
-
-function CreateDropsList(products) {
-    console.log(products)
-    if (products !== null && products !== undefined && products !== "") {
-        const indentedProducts = products
-            .split('\n')
-            .map(line => '            ' + line)
-            .join('\n');
-        return `DropsList(\n${indentedProducts}\n        )`;
-    } else {
-        return "DropsList()";
+    if (type === "droplist") {
+        formElements = [
+            { name: 'item', displayedName: 'item', type: 'text', placeholder: 'minecraft:iron_ingot' },
+            { name: 'meta', displayedName: 'meta', type: 'number', placeholder: '0' },
+            { name: 'chance', displayedName: 'chance', type: 'number', placeholder: '10', min: "0", max: "100" }
+        ];
     }
-}
 
-
-
-function createConfigForm() {
-    const container = document.getElementById("config-container");
-    container.innerHTML = "";
-
-    const addSection = (title, params, generateFunctionName, outputId) => {
-        const section = document.createElement("h2");
-        section.textContent = title;
-        container.appendChild(section);
-
-        params.forEach(param => {
-            const label = document.createElement("label");
-            label.textContent = param.displayedName;
-            label.htmlFor = param.name;
-
-            const inputElement = createInputElement(param);
-
-            const div = document.createElement("div");
-            div.className = "config-item";
-            div.appendChild(label);
-            div.appendChild(inputElement);
-
-            if (param.name === "mutation_conditions") {
-                const inputContainer = document.createElement("div");
-                inputContainer.id = "mutation_conditions_input_container";
-                div.appendChild(inputContainer);
-            }
-
-            const description = document.createElement("span");
-            description.textContent = param.description || "";
-            description.textContent = " " + description.textContent;
-            div.appendChild(description);
-
-            container.appendChild(div);
-        });
-
-        const button = document.createElement("button");
-        button.textContent = `Copy and Generate ${title} Config`;
-        button.onclick = () => {
-            window[generateFunctionName]();
-            copyToClipboard(outputId);
-        };
-        container.appendChild(button);
-
-        const pre = document.createElement("pre");
-        pre.id = outputId;
-        container.appendChild(pre);
-    };
-
-    addSection("Branches", branches, "generateBranchesConfig", "branches-output");
-    addSection("Bees", bees, "generateBeesConfig", "bees-output");
-    addSection("Mutations", mutations, "generateMutationsConfig", "mutations-output");
-    addSection("HoneyCombs", honeycombs, "generateHoneycombsConfig", "honeycombs-output");
-    addSection("HoneyDrops", honeydrops, "generateHoneydropsConfig", "honeydrops-output");
-    // addSection("FlowerAllele", flowerallele, "generateFloweralleleConfig", "flowerallele-output");
-    // addSection("Recipes", recipes, "generateRecipesConfig", "recipes-output");
-    // addSection("HiveGen", hivegen, "generateHivegenConfig", "hivegen-output");
-
-    // Add button for generating combined config
-    // const combinedButton = document.createElement("button");
-    // combinedButton.textContent = "全てのセクションの設定をテキストファイルとして出力";
-    // combinedButton.onclick = generateCombinedConfig;
-    // container.appendChild(combinedButton);
-}
-
-function copyToClipboard(outputId) {
-    const outputElement = document.getElementById(outputId);
-    const text = outputElement.textContent;
-    navigator.clipboard.writeText(text).then(() => {
-        alert('クリップボードにコピーされました。');
-    }).catch(err => {
-        alert('クリップボードへのコピーに失敗しました。');
-        console.error('コピーエラー:', err);
+    formElements.forEach(elementConfig => {
+        createFormElement(elementConfig, newContainer);
     });
+
+    container.appendChild(newContainer);
 }
 
-function generateCombinedConfig() {
-    const sections = ["branches-output", "bees-output", "mutations-output", "honeycombs-output", "honeydrops-output", "flowerallele-output", "recipes-output", "hivegen-output"];
-    let combinedConfig = '';
-
-    const blob = new Blob([combinedConfig], {
-        type: 'text/plain'
+function getDropList(container) {
+    const dropData = [];
+    const resultData = [];
+    const dropInputs = container.querySelectorAll('div');
+    dropInputs.forEach(dropInput => {
+        const item = dropInput.querySelector('input[id="item"]').value;
+        const meta = dropInput.querySelector('input[id="meta"]').value;
+        const chance = dropInput.querySelector('input[id="chance"]').value;
+        if (item && chance) {
+            const data = `${chance}% S:${item}`;
+            if (meta) data += (`@${meta}`);
+            dropData.push(data);
+        }
     });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'combined_config.txt';
-    a.click();
-    URL.revokeObjectURL(url);
+    if (dropData.length > 0) {
+        resultData.push(`DropsList(`);
+        resultData.push(`            ${dropData.join('\n')}`);
+        resultData.push(`        )`);
+    } else {
+        resultData.push(`DropsList()`)
+    }
+    return resultData.join('\n');
 }
 
 function getElementValue(element) {
@@ -577,11 +509,13 @@ function getElementValue(element) {
 }
 
 function createConfigLine(label, value, format = "%s = %d") {
-    console.log(value)
+    if (value === undefined || value === "false") {
+        return "";
+    }
     return value && value !== "\"\"" ? `${format.replace("%s", "        " + label).replace("%d", value)}\n` : "";
 }
 
-function generateBranchesConfig() {
+function generateBranchConfig() {
     const branchesConfig = `cfg Branches {
     cfg ${getElementValue('branch_name')} {
         UID = \"${getElementValue('branch_id')}\"
@@ -589,56 +523,48 @@ function generateBranchesConfig() {
         Scientific = ${getElementValue('scientific')}
     }
 }`
-    document.getElementById("branches-output").textContent = branchesConfig;
+    document.getElementById("branchConfig").textContent = branchesConfig;
 }
 
-function generateBeesConfig() {
-    const beeName = getElementValue('bee_name');
-    const productsDropList = CreateDropsList(getElementValue('products'));
-    const specialtyDropList = CreateDropsList(getElementValue('specialty'));
-    const primaryColor = getElementValue('bee_primarycolor').replace(/#/g, '0x');
-    const secondaryColor = getElementValue('bee_secondarycolor').replace(/#/g, '0x');
+function generateBeeConfig() {
+    let beesConfig = `cfg Bees {\n    cfg ${getElementValue('bee_name')} {\n`;
+    let isTrait = false;
+    for (const key in bee) {
+        const cfg = bee[key];
+        if (cfg.name === "bee_name") {
+            continue;
+        }
+        if (!isTrait) {
+            if (cfg.type === 'color') {
+                beesConfig += createConfigLine(cfg.configName, getElementValue(cfg.name).replace(/#/g, '0x'));
+            } else if (cfg.type === 'dropdown' || cfg.type === 'textarea') {
+                beesConfig += createConfigLine(cfg.configName, getElementValue(cfg.name));
+            } else if (cfg.type === 'droplist') {
+                beesConfig += createConfigLine(cfg.configName, getDropList(document.getElementById(cfg.name)));
+            } else if (cfg.type === 'checkbox') {
+                beesConfig += createConfigLine(cfg.configName, document.getElementById(cfg.name).checked);
+            } else {
+                beesConfig += createConfigLine(cfg.configName, getElementValue(cfg.name));
+            }
+            if (cfg.name === "specialty") {
+                isTrait = true;
+                beesConfig += `        cfg Traits {\n`;
+            }
+        } else {
+            if (cfg.type === 'dropdown') {
+                beesConfig += createConfigLine(`    ${cfg.configName.replace(/ /g, '_')}`, `"${getElementValue(cfg.name)}"`);
+            } else {
+                beesConfig += createConfigLine(`    ${cfg.configName}`, `"${getElementValue(cfg.name)}"`);
+            }
+        }
+    }
 
-    let beesConfig = `cfg Bees {\n`;
-    beesConfig += `    cfg ${beeName} {\n`;
-    beesConfig += createConfigLine('Dominant', getElementValue('dominant'));
-    beesConfig += createConfigLine('Glowing', getElementValue('glowing'));
-    beesConfig += createConfigLine('PrimaryColor', primaryColor);
-    beesConfig += createConfigLine('SecondaryColor', secondaryColor);
-    beesConfig += createConfigLine('Secret', getElementValue('secret'));
-    beesConfig += createConfigLine('Humidity', getElementValue('humidity'));
-    beesConfig += createConfigLine('Temperature', getElementValue('temperature'));
-    beesConfig += createConfigLine('Nocturnal', getElementValue('nocturnal'));
-    beesConfig += createConfigLine('Binominal', getElementValue('binominal'));
-    beesConfig += createConfigLine('Authority', getElementValue('authority'));
-    beesConfig += createConfigLine('Branch', `"${getElementValue('bee_branch')}"`);
-    beesConfig += createConfigLine('Products', productsDropList);
-    beesConfig += createConfigLine('Specialty', specialtyDropList);
-
-    beesConfig += "\n";
-    beesConfig += `        cfg Traits {\n`;
-    beesConfig += createConfigLine('    Base', `"${getElementValue('base')}"`);
-    beesConfig += createConfigLine('    Speed', `"${getElementValue('bee_speed')}"`);
-    beesConfig += createConfigLine('    Lifespan', `"${getElementValue('lifespan')}"`);
-    beesConfig += createConfigLine('    Fertility', `"${getElementValue('fertility')}"`);
-    beesConfig += createConfigLine('    Temperature_Tolerance', `"${getElementValue('temperature_tolerance')}"`);
-    beesConfig += createConfigLine('    Nocturnal', `"${getElementValue('A_nocturnal')}"`);
-    beesConfig += createConfigLine('    Humidity_Tolerance', `"${getElementValue('humidity_tolerance')}"`);
-    beesConfig += createConfigLine('    Tolerant_Flyer', `"${getElementValue('tolerantFlyer')}"`);
-    beesConfig += createConfigLine('    Cave_Dwelling', `"${getElementValue('caveDwelling')}"`);
-    beesConfig += createConfigLine('    Flower_Provider', `"${getElementValue('flower_provider')}"`);
-    beesConfig += createConfigLine('    Flowering', `"${getElementValue('flowering')}"`);
-    beesConfig += createConfigLine('    Territory', `"${getElementValue('territory')}"`);
-    beesConfig += createConfigLine('    Effect', `"${getElementValue('bee_effect')}"`);
-    beesConfig += `        }\n    }\n}`;
-
-    beesConfig += "\n\n";
-    beesConfig += `gendustry.bees.species.${beeName} = ${beeName}`
-    document.getElementById("bees-output").textContent = beesConfig;
+    beesConfig += `    }\n}`;
+    beesConfig += `\n\ngendustry.bees.species.${getElementValue('bee_name')} = ${getElementValue('bee_name')}`;
+    document.getElementById("beeConfig").textContent = beesConfig;
 }
 
-
-function generateMutationsConfig() {
+function generateMutationConfig() {
     const selectedCondition = getElementValue('mutation_conditions');
     let mutationCondition = "";
     if (selectedCondition !== "None") {
@@ -653,11 +579,10 @@ function generateMutationsConfig() {
 ${mutationCondition}
 }`;
 
-    document.getElementById("mutations-output").textContent = mutationsConfig;
+    document.getElementById("mutationConfig").textContent = mutationsConfig;
 }
 
-
-function generateHoneycombsConfig() {
+function generateHoneycombConfig() {
     const honeycombsConfig = `cfg HoneyCombs {
     cfg ${getElementValue('honeycomb_name')} {
         ID = ${getElementValue('honeycomb_damagevalue')}
@@ -667,11 +592,10 @@ function generateHoneycombsConfig() {
 }
 
 gendustry.honeycomb.${getElementValue('honeycomb_name')}.name = ${getElementValue('honeycomb_name')} Comb`;
-    document.getElementById("honeycombs-output").textContent = honeycombsConfig;
+    document.getElementById("honeycombConfig").textContent = honeycombsConfig;
 }
 
-
-function generateHoneydropsConfig() {
+function generateHoneydropConfig() {
     const honeydropsConfig = `cfg HoneyDrops {
     cfg ${getElementValue('honeydrop_name')} {
         ID = ${getElementValue('honeydrop_damagevalue')}
@@ -681,41 +605,5 @@ function generateHoneydropsConfig() {
 }
     
 gendustry.honeydrop.${getElementValue('honeydrop_name')}.name = ${getElementValue('honeydrop_name')} Honey Drop`;
-    document.getElementById("honeydrops-output").textContent = honeydropsConfig;
+    document.getElementById("honeydropConfig").textContent = honeydropsConfig;
 }
-
-
-// function generateFloweralleleConfig() {
-//     const floweralleleConfig = `cfg flowerallele {
-//         ${getElementValue('flowerallele_id')} {
-//             id = ${getElementValue('flowerallele_id')}
-//             flowers = ${getElementValue('flowerallele_flowers')}
-//         }
-//     }`;
-//     document.getElementById("flowerallele-output").textContent = floweralleleConfig;
-// }
-
-// function generateRecipesConfig() {
-//     const recipesConfig = `cfg recipes {
-//         ${getElementValue('input')}_${getElementValue('output')} {
-//             input = ${getElementValue('input')}
-//             output = ${getElementValue('output')}
-//             time = ${getElementValue('time')}
-//         }
-//     }`;
-//     document.getElementById("recipes-output").textContent = recipesConfig;
-// }
-
-// function generateHivegenConfig() {
-//     const hivegenConfig = `cfg hivegen {
-//         ${getElementValue('hivegen_id')} {
-//             id = ${getElementValue('hivegen_id')}
-//             world = ${getElementValue('hivegen_world')}
-//             biome = ${getElementValue('hivegen_biome')}
-//             chance = ${getElementValue('hivegen_chance')}
-//         }
-//     }`;
-//     document.getElementById("hivegen-output").textContent = hivegenConfig;
-// }
-
-// document.addEventListener("DOMContentLoaded", createConfigForm);
